@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    container_name: test-db
+    volumes:
+      - "./src/test/resources:/docker-entrypoint-initdb.d"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=devuser
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  app:
+    image: spring-restapi-ci-sample:0.0.1-SNAPSHOT
+    container_name: spring-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/devdb
+    depends_on:
+      db:
+        condition: service_healthy
