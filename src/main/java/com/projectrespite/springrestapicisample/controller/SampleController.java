@@ -1,7 +1,7 @@
 package com.projectrespite.springrestapicisample.controller;
 
 
-import com.projectrespite.springrestapicisample.model.PersonResponse;
+import com.projectrespite.springrestapicisample.model.UserResponse;
 import com.projectrespite.springrestapicisample.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +17,9 @@ public class SampleController {
     @Autowired
     SampleService service;
 
-    @GetMapping
+    @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
-    public List<PersonResponse> getPerson(){
-        return service.getPersonList();
+    public List<UserResponse> getUserList(){
+        return service.getUserList();
     }
 }

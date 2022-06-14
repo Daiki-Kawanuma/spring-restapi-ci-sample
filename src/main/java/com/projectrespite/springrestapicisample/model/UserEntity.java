@@ -3,8 +3,8 @@ package com.projectrespite.springrestapicisample.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "person")
-public class PersonEntity {
+@Table(name = "users")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,9 @@ public class PersonEntity {
     @Column(name = "age")
     private int age;
 
-    public PersonEntity(){}
+    public UserEntity(){}
 
-    public PersonEntity(int id, String name, int age) {
+    public UserEntity(int id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;

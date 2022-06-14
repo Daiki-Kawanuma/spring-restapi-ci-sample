@@ -26,3 +26,21 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      # test: ["CMD-SHELL", "curl --fail http://localhost:8080/actuator/health || exit 1"]
+      test: ["CMD-SHELL", "ls"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+  test:
+    image: postman/newman:latest
+    container_name: test-driver
+    command:
+      run /etc/postman/users.json 
+      --env-var hostname=host.docker.internal
+    volumes:
+      - "./collections:/etc/postman"
+    depends_on:
+      app:
+        condition: service_healthy

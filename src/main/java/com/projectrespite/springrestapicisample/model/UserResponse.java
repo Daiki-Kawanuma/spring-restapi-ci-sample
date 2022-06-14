@@ -1,6 +1,6 @@
 package com.projectrespite.springrestapicisample.model;
 
-public class PersonResponse {
+public class UserResponse {
 
     private int id;
     private String firstName;

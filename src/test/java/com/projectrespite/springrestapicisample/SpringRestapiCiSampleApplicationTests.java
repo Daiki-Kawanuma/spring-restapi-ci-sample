@@ -50,7 +50,7 @@ public class SpringRestapiCiSampleApplicationTests {
 		System.out.println(postgres.getJdbcUrl());
 
 		try {
-			MvcResult result = mockMvc.perform(get("/"))
+			MvcResult result = mockMvc.perform(get("/users"))
 					.andExpect(status().isOk())
 					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 					.andExpect(content().json("[{\"id\":1,\"firstName\":\"Daiki\",\"lastName\":\"Kawanuma\",\"fullName\":\"Daiki Kawanuma\",\"age\":30}]", true))
